@@ -19,7 +19,7 @@ function App() {
           </p>
           <div className="flex flex-col lg:flex-row gap-4 mt-4">
             <RecordBtn />
-            <button className=" hover:underline text-secondary hover:text-primary transition-colors">Use a Sample Recording</button>
+            <button className=" hover:underline text-secondary hover:text-primary transition-colors">Use Sample Recording</button>
           </div>
           <h3 className="text-secondary text-lg font-semibold mt-6">Text To Speak</h3>
           <p className="text-secondary text-sm font-normal">
