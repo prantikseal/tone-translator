@@ -25,7 +25,7 @@ function App() {
             Add a short paragraph and the AI model will speak aloud the text.
           </p>
           <textarea className="w-full border border-gray-300 rounded-md p-2 mt-2" placeholder="Enter text here" rows="4"></textarea>
-          <div className="notification-area flex w-full justify-between flex-col lg:flex-row">
+          <div className="notification-area flex w-full justify-between flex-col-reverse lg:flex-row">
             <p className="text-xs text-gray-500 mt-1">keep it under 200 words</p>
             <button className=" text-secondary hover:text-primary transition-colors">
 
