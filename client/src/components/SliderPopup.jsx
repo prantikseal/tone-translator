@@ -14,7 +14,7 @@ const SliderPopup = ({ isOpen, onClose, children }) => {
 
     return (
         <div
-            className={`fixed inset-0 z-20 overflow-x-hidden overflow-y-hidden flex  bg-gray-500 bg-opacity-70 transition-transform duration-300 ease-in-out ${
+            className={`fixed inset-0 z-20 overflow-x-hidden overflow-y-hidden flex  bg-gray-500 bg-opacity-70 transition-transform duration-1000 ease-in-out ${
                 isVisible ? 'translate-x-0' : 'translate-x-full'
             }`}
         >
@@ -22,7 +22,7 @@ const SliderPopup = ({ isOpen, onClose, children }) => {
             <div className="relative  w-full max-w-5xl p-4 bg-white shadow-2xl">
                 <button
                     onClick={handleClose}
-                    className="absolute right-12 text-5xl text-secondary scale-150 hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary rounded-2xl hover:bg-gray-200 p-2 flex justify-center items-center"
+                    className="absolute right-12 text-5xl text-secondary scale-125 hover:text-primary transition-colors focus:outline-none rounded-xl hover:bg-gray-200 p-2 flex justify-center items-center"
                 >
                     &times;
                 </button>
