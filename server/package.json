@@ -1,0 +1,28 @@
+{
+    "name": "tone-translator",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/prantikseal/tone-translator.git"
+    },
+    "keywords": [
+        "ai",
+        "voice",
+        "cloner"
+    ],
+    "author": "prantikseal",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/prantikseal/tone-translator/issues"
+    },
+    "homepage": "https://github.com/prantikseal/tone-translator#readme",
+    "dependencies": {
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2"
+    }
+}
