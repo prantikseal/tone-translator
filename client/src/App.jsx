@@ -1,4 +1,3 @@
-import './App.css';
 import RecordBtn from './components/RecordBtn';
 import { FaArrowRight } from "react-icons/fa";
 import { FaShuffle } from "react-icons/fa6";
@@ -26,7 +25,7 @@ function App() {
             Add a short paragraph and the AI model will speak aloud the text.
           </p>
           <textarea className="w-full border border-gray-300 rounded-md p-2 mt-2" placeholder="Enter text here" rows="4"></textarea>
-          <div className="notification-area flex w-full justify-between">
+          <div className="notification-area flex w-full justify-between flex-col lg:flex-row">
             <p className="text-xs text-gray-500 mt-1">keep it under 200 words</p>
             <button className=" text-secondary hover:text-primary transition-colors">
 
@@ -34,7 +33,7 @@ function App() {
               <FaShuffle className="inline-block ml-2" />
             </button>
           </div>
-          <div className="flex gap-4 mt-4 w-full justify-between">
+          <div className="flex gap-4 mt-4 w-full justify-between flex-col lg:flex-row">
             <button className="bg-secondary hover:bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark transition-colors flex justify-center items-center">Generate
               <FaArrowRight className="inline-block ml-2" />
             </button>

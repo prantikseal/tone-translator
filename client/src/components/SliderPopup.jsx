@@ -4,13 +4,14 @@ const SliderPopup = ({ isOpen, onClose, children }) => {
     const [isVisible, setIsVisible] = useState(isOpen);
 
     useEffect(() => {
-        setIsVisible(isOpen); // Syncing isOpen with isVisible when it changes
+        setIsVisible(isOpen); 
     }, [isOpen]);
 
     const handleClose = () => {
-        setIsVisible(false); // Hiding the popup
+        setIsVisible(false); 
         onClose();
     };
+
 
     return (
         <div
@@ -19,7 +20,7 @@ const SliderPopup = ({ isOpen, onClose, children }) => {
             }`}
         >
             <div className="min-h-full sm:flex-1"></div>
-            <div className="relative  w-full max-w-5xl p-4 bg-white shadow-2xl">
+            <div className="relative  w-full max-w-2xl p-4 bg-white shadow-2xl">
                 <button
                     onClick={handleClose}
                     className="absolute right-12 text-5xl text-secondary scale-125 hover:text-primary transition-colors focus:outline-none rounded-xl hover:bg-gray-200 p-2 flex justify-center items-center"
