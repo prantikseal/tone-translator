@@ -1,62 +1,52 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Popup from './Popup'
 import { AiTwotoneAudio } from "react-icons/ai";
-import vmsg from 'vmsg';
+
 
 const RecordBtn = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isRecording, setIsRecording] = useState(false);
     const [audioBlob, setAudioBlob] = useState(null);
-    const [recorder, setRecorder] = useState(null);
+    const mediaRecorderRef = useRef(null);
 
     const togglePopup = () => {
         setIsOpen(!isOpen);
-    };
-
-    const initializeRecorder = async () => {
-        try {
-            const newRecorder = new vmsg.Recorder({
-                wasmURL: "https://unpkg.com/vmsg@0.3.0/vmsg.wasm"
-            });
-            await newRecorder.initAudio();
-            await newRecorder.initWorker();
-            setRecorder(newRecorder);
-        } catch (error) {
-            console.error("Error initializing recorder:", error);
+        if (!isOpen) {
+            setAudioBlob(null);
         }
     };
 
-    const startRecording = async () => {
-        try {
-            if (recorder) {
-                recorder.startRecording();
+    const startRecording = () => {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                const mediaRecorder = new MediaRecorder(stream);
+                mediaRecorderRef.current = mediaRecorder;
+                const chunks = [];
+
+                mediaRecorder.ondataavailable = (e) => {
+                    chunks.push(e.data);
+                };
+
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'audio/wav' });
+                    setAudioBlob(blob);
+                };
+
+                mediaRecorder.start();
                 setIsRecording(true);
-            } else {
-                await initializeRecorder();
-                recorder.startRecording();
-                setIsRecording(true);
-            }
-        } catch (error) {
-            console.error("Error starting recording:", error);
-        }
+            })
+            .catch(error => console.error('Error accessing microphone:', error));
     };
 
-    const stopRecording = async () => {
-        try {
-            if (recorder) {
-                const blob = await recorder.stopRecording();
-                setAudioBlob(blob);
-                setIsRecording(false);
-            }
-        } catch (error) {
-            console.error("Error stopping recording:", error);
+    const stopRecording = () => {
+        if (mediaRecorderRef.current && mediaRecorderRef.current.state === 'recording') {
+            mediaRecorderRef.current.stop();
+            setIsRecording(false);
         }
     };
 
     const handleUseRecording = () => {
-        // Handle the use of recorded audio here, for example, you can save it to state or send it to a server
         console.log("Recording used:", audioBlob);
-        // Reset states if needed
         setIsOpen(false);
         setAudioBlob(null);
     };
@@ -102,7 +92,7 @@ const RecordBtn = () => {
                     )}
 
                     <p className='text-sm text-gray-500 mt-2'>
-                        You can also use the voice styles we provided if you don{'\''}t want to create your own.
+                        You can also use the voice styles we provided if you don{`'`}t want to create your own.
                     </p>
                 </div>
             </Popup>
